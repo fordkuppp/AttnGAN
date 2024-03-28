@@ -196,6 +196,7 @@ class condGANTrainer(object):
                 fullpath = '%s/G_%s_%d_%d.png'\
                     % (self.image_dir, name, gen_iterations, i)
                 im.save(fullpath)
+            print(fullpath)
 
         # for i in range(len(netsD)):
         i = -1
@@ -214,6 +215,7 @@ class condGANTrainer(object):
             fullpath = '%s/D_%s_%d.png'\
                 % (self.image_dir, name, gen_iterations)
             im.save(fullpath)
+        print(fullpath)
 
     def train(self):
         text_encoder, image_encoder, netG, netsD, start_epoch = self.build_models()
@@ -344,6 +346,7 @@ class condGANTrainer(object):
             ndarr = img.permute(1, 2, 0).data.cpu().numpy()
             im = Image.fromarray(ndarr)
             im.save(fullpath)
+            print(fullpath)
 
     def sampling(self, split_dir):
         if cfg.TRAIN.NET_G == '':
@@ -428,6 +431,7 @@ class condGANTrainer(object):
                         im = Image.fromarray(im)
                         fullpath = '%s_s%d.png' % (s_tmp, k)
                         im.save(fullpath)
+                        print(fullpath)
 
     def gen_example(self, data_dic):
         if cfg.TRAIN.NET_G == '':
@@ -498,6 +502,7 @@ class condGANTrainer(object):
                             im = Image.fromarray(im)
                             fullpath = '%s_g%d.png' % (save_name, k)
                             im.save(fullpath)
+                            print(fullpath)
 
                         for k in range(len(attention_maps)):
                             if len(fake_imgs) > 1:
@@ -515,3 +520,4 @@ class condGANTrainer(object):
                                 im = Image.fromarray(img_set)
                                 fullpath = '%s_a%d.png' % (save_name, k)
                                 im.save(fullpath)
+                            print(fullpath)
